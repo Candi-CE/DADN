@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <!-- Thêm các thư viện của Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- Thư viện jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Thư viện Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+
+<!-- Thư viện Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+  <!-- Kết thúc phần thêm thư viện của Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="javascript/script.js" ></script>
+   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+  <div class = "header">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <!--<a class="navbar-brand" href="#">Logo</a>-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="Performance.html">Performance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="maintenance.html">Maintenance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="history.html">History</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="manual.html">User Manual</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+  <div class = "body">
+	<div class="row">
+    <div class="col-md-6">
+	<div class="animation-container">
+	<div class="water"></div>
+	<div class="pause"></div>
+</div>
+<button onclick="start()">Tưới</button>
+<button onclick="pause()">Tạm ngưng</button>
+<button onclick="reset()">Reset</button>
+<div class="percentage"></div>
+<script>
+	let intervalId;
+	let watering = false;
+
+	function start() {
+		if (!watering) {
+			watering = true;
+			document.querySelector('.water').style.animationPlayState = 'running';
+			document.querySelector('.pause').style.animationPlayState = 'running';
+			intervalId = setInterval(function() {
+				let percentage = Math.round((document.querySelector('.water').clientHeight / 300) * 100);
+				document.querySelector('.percentage').textContent = percentage + '% đã tưới';
+			}, 100);
+		}
+	}
+
+	function pause() {
+		document.querySelector('.water').style.animationPlayState = 'paused';
+		document.querySelector('.pause').style.animationPlayState = 'paused';
+		clearInterval(intervalId);
+	}
+
+	function reset() {
+		document.querySelector('.water').style.animationPlayState = 'paused';
+		document.querySelector('.pause').style.animationPlayState = 'paused';
+		document.querySelector('.water').style.height = '0';
+		document.querySelector('.pause').style.height = '0';
+		document.querySelector('.percentage').textContent = '';
+		clearInterval(intervalId);
+		watering = false;
+	}
+</script>
+
+</div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="perform-background col-md-6" >
+			<div class = "row sensor">Sensor 1</div>
+			<div class = "row sensor">
+				t: 26 oC<br>
+				a: 50 %<br>
+			</div>
+		</div>
+        <div class="col-md-6 perform-background">
+			<div class = "row sensor">Sensor 2</div>
+			<div class = "row sensor">
+				t: 26 oC<br>
+				a: 50 %<br>
+			</div>
+		</div>
+		</div>
+	  <div class="row">
+        <div class="col-md-6 perform-background">
+			<div class = "row sensor">Sensor 3</div>
+			<div class = "row sensor">
+				t: 26 oC<br>
+				a: 50 %<br>
+			</div>
+		</div>
+        <div class="col-md-6 perform-background">
+			<div class = "row sensor">Sensor 4</div>
+			<div class = "row sensor">
+				t: 26 oC<br>
+				a: 50 %<br>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>

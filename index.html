@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <!-- Thêm các thư viện của Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- Thư viện jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Thư viện Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+
+<!-- Thư viện Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+  <!-- Kết thúc phần thêm thư viện của Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="javascript/script.js" ></script>
+   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+  <script>
+  var url = new URL(window.location.href);
+  var auto = url.searchParams.get("auto");
+  var wateringTimesInMinutes = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  var PlantName = ["Mít", "Lúa", "Ngô", "Bưởi", "Cam", "Rau màu", "Hoa"];
+  var IndexPlant = url.searchParams.get("plant") ?? 0;
+  var plant = "Không xác định";
+  var time = wateringTimesInMinutes[IndexPlant] * 60;
+  if (auto) {
+    plant = PlantName[IndexPlant];
+  } else {
+    time = Number(url.searchParams.get("time"));
+  }
+  if (IndexPlant !== null && IndexPlant >= 0 && IndexPlant < PlantName.length) {
+    plant = PlantName[IndexPlant];
+  }
+  
+  var Humi = 60;
+  var Temperature = 29;
+  
+  
+  
+  
+</script>
+
+  <div class = "header">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <!--<a class="navbar-brand" href="#">Logo</a>-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Home</a> 
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Performance.html">Performance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="maintenance.html">Maintenance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="history.html">History</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="manual.html">User Manual</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+  
+  <div class="body">
+  <div class="row">
+    <div class="col">
+      <div class="row  gy-2 align-items-stretch d-flex">
+        <div class="col-sm-4 h-100 home-background" >
+		<div class = "home">	<a href = "selectMode.html" style = "color: inherit; text-decoration: none;">Irrigation mode</a></div>
+		<div class = "block-select" id = "block-select-1">Auto</div>
+		<div class = "block-select" id = "block-select-2">Semi-auto</div>
+		<script>
+			// Set the cookie value
+				// Fade out the appropriate element based on the "auto" parameter
+			if (!auto) {
+				$('#block-select-1').fadeTo(0, 0.5);
+			} else {
+				$('#block-select-2').fadeTo(0, 0.5);
+			}
+</script>
+	   </div>
+        <div class="col-sm-4 h-100 home-background" >
+			<div class = "home">Humidity</div>
+			<br>
+			<div class = "H_T">
+			<img src="img/DoAm.svg" style = "margin-bottom:12px;margin-left:10%; height: 80px;" />
+			<script>
+			document.write(Humi + "%");
+			</script>
+			</div>
+		</div>
+		<div class="col-sm-4 h-100 home-background" >
+			<div class = "home">Temptature</div>
+			<br>
+			<div class = "H_T">
+			<img src="img/NhietDo.svg" style = "margin-bottom:12px;margin-left:10%;height: 80px;"  />
+			<script>
+			document.write(Temperature + "*C");
+			</script>
+			</div>
+		</div>
+        <div class="col-sm-4 h-100 home-background home" >
+		<h3>Thông tin cây trồng</h3>
+		<script>
+			document.write("Tên: " + plant + "<br>" + "Thời gian tưới: " + time + "s<br>" );
+		</script>
+		<br>
+		</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+  <div class="row">
+      <div class="row h-20">
+        <div class="col">
+			<canvas id="pHChart"></canvas>
+		</div>
+      </div> 
+      <!--<div class="row h-50">
+        <div class="col">
+			<canvas id="temperatureChart"></canvas>
+		</div>
+      </div>-->
+    
+      <div class="row h-50">
+        <div class="col">
+			<canvas id="humidityChart"></canvas>
+		</div>
+      </div>
+	  
+	  <div class="row h-50">
+        <div class="col">
+			<canvas id="soilMoistureChart"></canvas>
+		</div>
+      </div>
+    <script src="javascript/chart.js"></script>
+  </div>
+</div>
+    <div class="col-md-6">
+      <div class="row h-300 home-background" style = "width:100%; height: 100%;">
+	  <div class = "home">Notification</div>
+	  <br><br><br></div>
+    </div>
+	<div class="col-md-3">
+      <div class="row h-300 home-background" style = "width:100%; height: 100%;">
+	  <div class = "home">Yêu cầu</div>
+	  <br><br><br></div>
+    </div>
+  </div>
+</div>
+</div>
+</body>

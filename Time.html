@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time</title>
+  <!-- Thêm các thư viện của Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- Thư viện jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Thư viện Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+
+<!-- Thư viện Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+  <!-- Kết thúc phần thêm thư viện của Bootstrap -->
+  <script src="javascript/Time.js" ></script>
+   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+  <div class = "background">
+  <div class="main-background" id="background1">
+    <div class="label">
+      Chọn thời gian tưới
+    </div>
+	<div style = "margin-top: 10px; font-size: 40px;"class = "home" >
+		<form action="index.html" method="POST">
+	
+		<select id="gio" name="gio"></select> h
+		<select id="phut" name="phut"></select> m
+		<select id="giay" name="giay"></select> s <br>
+	</div>	
+	<script>
+
+    
+// Tạo tùy chọn cho giờ
+var gioSelect = document.getElementById("gio");
+for (var i = 0; i <= 6; i++) {
+  var gioOption = document.createElement("option");
+  gioOption.text = i < 10 ? "0" + i : i;
+  gioOption.value = gioOption.text;
+  gioSelect.appendChild(gioOption);
+}
+
+// Tạo tùy chọn cho phút
+var phutSelect = document.getElementById("phut");
+for (var i = 0; i <= 59; i++) {
+  var phutOption = document.createElement("option");
+  phutOption.text = i < 10 ? "0" + i : i;
+  phutOption.value = phutOption.text;
+  phutSelect.appendChild(phutOption);
+}
+
+// Tạo tùy chọn cho giây
+var giaySelect = document.getElementById("giay");
+for (var i = 0; i <= 59; i++) {
+  var giayOption = document.createElement("option");
+  giayOption.text = i < 10 ? "0" + i : i;
+  giayOption.value = giayOption.text;
+  giaySelect.appendChild(giayOption);
+}
+</script>
+<br>
+      <button type="submit">OK</button>
+    </form>
+  </div>
+</div>
+</div>
+</body>
